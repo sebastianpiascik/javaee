@@ -1,0 +1,1 @@
+# Treść zadanie, uwagi 
