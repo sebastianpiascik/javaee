@@ -30,3 +30,5 @@ target/
 log/
 logs/
 out/
+.idea/
+zad02-test/
