@@ -1,4 +1,4 @@
-package app;
+package pl.spiascik.ug.app;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
