@@ -5,7 +5,7 @@ import pl.spiascik.ug.store.domain.Cloth;
 import java.util.ArrayList;
 
 public class ShopService {
-    public static ArrayList<Cloth> basket = new ArrayList<Cloth>();
+    private static ArrayList<Cloth> basket = new ArrayList<Cloth>();
 
     public static ArrayList<Cloth> getBasket(){
         return basket;
