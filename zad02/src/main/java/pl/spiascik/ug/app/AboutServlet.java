@@ -1,12 +1,9 @@
 package pl.spiascik.ug.app;
 
-import javax.servlet.ServletException;
+import java.io.*;
+import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.http.*;
 
 @WebServlet("/about")
 public class AboutServlet extends HttpServlet {
@@ -18,7 +15,7 @@ public class AboutServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
 
-        out.println("<html><body><h4>About: Sebastian Piaścik</h4></body></html>");
+        out.println("<html><body><h2>Hello World! My name is Sebastian</h2></body></html>");
 
     }
 }
