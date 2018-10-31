@@ -11,11 +11,8 @@ public class ShopService {
         return basket;
     }
 
-    public static void addToBasket(Cloth cloth) {
-        basket.add(cloth);
-    }
-
     public static void addToBasket(int id){
+        removeFromBasket(id);
         basket.add(ClothService.getCloth(id));
     }
 
