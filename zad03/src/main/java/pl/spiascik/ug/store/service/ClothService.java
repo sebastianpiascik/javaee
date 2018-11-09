@@ -3,11 +3,18 @@ package pl.spiascik.ug.store.service;
 import pl.spiascik.ug.store.domain.Cloth;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ClothService {
     private static int idCounter = 0;
+
+    public static int getIdCounter() {
+        return idCounter;
+    }
+
+    public static void setIdCounter(int idCounter) {
+        ClothService.idCounter = idCounter;
+    }
+
     public static ArrayList<Cloth> clothes = new ArrayList<Cloth>();
 
     public static Cloth getCloth(int id) {
@@ -19,8 +26,8 @@ public class ClothService {
     }
 
     public static void addCloth(Cloth cloth) {
-        cloth.setId(idCounter);
+        cloth.setId(getIdCounter());
         clothes.add(cloth);
-        idCounter++;
+        setIdCounter(getIdCounter() + 1);
     }
 }

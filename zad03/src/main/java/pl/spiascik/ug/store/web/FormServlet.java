@@ -4,6 +4,7 @@ import pl.spiascik.ug.store.domain.Cloth;
 import pl.spiascik.ug.store.service.ClothService;
 import pl.spiascik.ug.store.service.ShopService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,22 +45,21 @@ public class FormServlet extends HttpServlet {
 
 
         Cloth newCloth = new Cloth(name,productionDate,price,isWaterproof);
-        ClothService.addCloth(newCloth);
 
-        Cloth newClothContent = ClothService.getCloth(ClothService.clothes.size()-1);
+        ClothService clothes = (ClothService) getServletContext().getAttribute("products");
+        clothes.addCloth(newCloth);
+        getServletContext().setAttribute("products",clothes);
+
+        Cloth newClothContent = clothes.getCloth(ClothService.clothes.size()-1);
 
         try {
-            out.println("<!DOCTYPE html>");
-            out.println("<html><head>");
+            out.println("<!DOCTYPE html><html><head>");
             out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-            out.println("<style>*{font-family:cursive;color:#454545;}body{margin:20px 2em;}</style>");
-            out.println("<body>");
-            out.println("<h3>Dodano produkt - " + newClothContent.getName() + "</h3>");
-            out.println("<br/>");
+            out.println("<style>*{font-family:cursive;color:#454545;}body{margin:20px 2em;}</style></head><body>");
+            out.println("<h3>Dodano produkt - " + newClothContent.getName() + "</h3><br/>");
             out.println("<p><a href='/zad03/'>Wróć na stronę główną</a></p>");
             out.println("<p><a href='/zad03/form'>Dodaj następny produkt</a></p>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println("</body></html>");
         } finally {
             out.close();
         }
@@ -71,13 +71,10 @@ public class FormServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            out.println("<!DOCTYPE html>");
-            out.println("<html><head>");
+            out.println("<!DOCTYPE html><html><head>");
             out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-            out.println("<style>*{font-family:cursive;color:#454545;}body{margin:20px 2em;}</style>");
-            out.println("<title>Hello, World</title></head>");
-            out.println("<body>");
-            out.println("<h1>Formularz</h1>");
+            out.println("<style>*{font-family:cursive;color:#454545;}body{margin:20px 2em;}</style></head>");
+            out.println("<body><h1>Formularz</h1>");
             out.println("<form action='form' method='post'>" +
                     "<fieldset><label for='name'>Nazwa: </label><input type='text' name='name' /><br/><br/>" +
                     "<label for='productionDate'>Data produkcji: </label><input type='date' name='productionDate' /><br/><br/>" +
@@ -85,20 +82,10 @@ public class FormServlet extends HttpServlet {
                     "<label for='isWaterproof'>Wodoodporność: </label><input type='checkbox' name='isWaterproof' /><br/><br/>" +
                     "<button type='submit'>Dodaj produkt</button></fieldset>" +
                     "</form>");
-            out.println("<p><a href='/zad03/'>Wróc do sklepu</a></p>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println("<p><a href='/zad03/'>Wróc do sklepu</a></p></body></html>");
         } finally {
             out.close();
         }
-    }
-
-    @Override
-    public void init() throws ServletException {
-
-        getServletContext().setAttribute("shop_storage", new ShopService());
-
-
     }
 }
 

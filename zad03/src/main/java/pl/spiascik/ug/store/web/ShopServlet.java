@@ -21,36 +21,26 @@ public class ShopServlet extends HttpServlet {
 
         HttpSession session = request.getSession(true);
 
-        ArrayList<Cloth> clothes;
-        String clothesKey = new String("clothes");
-
+        ShopService basket;
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
         if (request.getParameter("formName").equals("addToBasket")) {
 
-
             if (!session.isNew()) {
-                clothes = (ArrayList<Cloth>) session.getAttribute(clothesKey);
-                clothes.add(ClothService.getCloth(Integer.parseInt(request.getParameter("id"))));
-                session.setAttribute(clothesKey, clothes);
+                basket = (ShopService) session.getAttribute("basket");
+                basket.addToBasket(Integer.parseInt(request.getParameter("id")));
+                session.setAttribute("basket", basket);
             }
 
-
-//            ShopService.addToBasket(Integer.parseInt(request.getParameter("id")));
-
             try {
-                out.println("<!DOCTYPE html>");
-                out.println("<html><head>");
+                out.println("<!DOCTYPE html><html><head>");
                 out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-                out.println("<style>*{font-family:cursive;color:#454545;}body{margin:20px 2em;}</style>");
-                out.println("<body>");
-                out.println("<h3>Dodano produkt do koszyka</h3>");
-                out.println("<br/>");
+                out.println("<style>*{font-family:cursive;color:#454545;}body{margin:20px 2em;}</style></head><body>");
+                out.println("<h3>Dodano produkt do koszyka</h3><br/>");
                 out.println("<p><a href='/zad03/'>Wróć na stronę główną</a></p>");
-                out.println("</body>");
-                out.println("</html>");
+                out.println("</body></html>");
             } finally {
                 out.close();
             }
@@ -59,33 +49,18 @@ public class ShopServlet extends HttpServlet {
         if (request.getParameter("formName").equals("removeFromBasket")) {
 
             if (!session.isNew()) {
-                clothes = (ArrayList<Cloth>) session.getAttribute(clothesKey);
-                clothes.remove(ClothService.getCloth(Integer.parseInt(request.getParameter("id"))));
-
-//                int id = Integer.parseInt(request.getParameter("id"));
-//                for (Cloth cloth : clothes) {
-//                    if (cloth.getId() == id) {
-//                        clothes.remove(id);
-//                        break;
-//                    }
-//                }
-                session.setAttribute(clothesKey, clothes);
+                basket = (ShopService) session.getAttribute("basket");
+                basket.removeFromBasket(Integer.parseInt(request.getParameter("id")));
+                session.setAttribute("basket", basket);
             }
 
-
-//            ShopService.removeFromBasket(Integer.parseInt(request.getParameter("id")));
-
             try {
-                out.println("<!DOCTYPE html>");
-                out.println("<html><head>");
+                out.println("<!DOCTYPE html><html><head>");
                 out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
-                out.println("<style>*{font-family:cursive;color:#454545;}body{margin:20px 2em;}</style>");
-                out.println("<body>");
-                out.println("<h3>Usunięto produkt z koszyka</h3>");
-                out.println("<br/>");
+                out.println("<style>*{font-family:cursive;color:#454545;}body{margin:20px 2em;}</style></head><body>");
+                out.println("<h3>Usunięto produkt z koszyka</h3><br/>");
                 out.println("<p><a href='/zad03/'>Wróć na stronę główną</a></p>");
-                out.println("</body>");
-                out.println("</html>");
+                out.println("</body></html>");
             } finally {
                 out.close();
             }
@@ -99,17 +74,14 @@ public class ShopServlet extends HttpServlet {
 
         HttpSession session = request.getSession(true);
 
-        ArrayList<Cloth> clothes = new ArrayList<Cloth>();
-        String clothesKey = new String("clothes");
+        ShopService basket = new ShopService();
 
-        // Check if this is new comer on your web page.
-        if (session.isNew()) {
-
-        } else {
-            clothes = (ArrayList<Cloth>) session.getAttribute(clothesKey);
+        if (!session.isNew()) {
+            basket = (ShopService) session.getAttribute("basket");
         }
-        session.setAttribute(clothesKey, clothes);
+        session.setAttribute("basket", basket);
 
+        ClothService clothes = (ClothService) getServletContext().getAttribute("products");
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -119,12 +91,11 @@ public class ShopServlet extends HttpServlet {
             out.println("<html><head>");
             out.println("<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>");
             out.println("<style>*{font-family:cursive;color:#454545;}body{margin:20px 2em;}</style>");
-            out.println("<body>");
-            out.println("<h2>Sklep z ubraniami</h2><hr/>");
-            if (ClothService.getAllClothes().size() > 0) {
+            out.println("<body><h2>Sklep z ubraniami</h2><hr/>");
+            if (clothes.getAllClothes().size() > 0) {
                 out.println("<h3>Wszystkie produkty:</h3>");
                 out.println("<ul>");
-                for (Cloth cloth : ClothService.getAllClothes()) {
+                for (Cloth cloth : clothes.getAllClothes()) {
                     String waterproof = "";
                     if (cloth.isWaterproof())
                         waterproof = " - wodoodporność";
@@ -142,30 +113,10 @@ public class ShopServlet extends HttpServlet {
                 out.println("<p>Brak produktów w sklepie</p>");
             }
             out.println("<p><a href='/zad03/form'>Dodaj produkt</a></p>");
-//            if (ClothService.getAllClothes().size() > 0) {
-//                out.println("<h3>Produkty w koszyku:</h3>");
-//                out.println("<ul>");
-//                for (Cloth cloth : ShopService.getBasket()) {
-//                    String waterproof = "";
-//                    if (cloth.isWaterproof())
-//                        waterproof = " - wodoodporność";
-//                    out.println("<li>Produkt: " + cloth.getName() + waterproof +
-//                            "<br/>Cena: " + cloth.getPrice() + "zł" +
-//                            "<br/>Data dodania: <i>" + cloth.getProductionDate() + "</i></li>");
-//                    out.println("<form action='' method='post'>" +
-//                            "<input type='hidden' name='formName' value='removeFromBasket' />" +
-//                            "<input type='text' name='id' value='" + cloth.getId() + "' hidden />" +
-//                            "<button type='submit'>Usuń z koszyka</button><br/><br/>" +
-//                            "</form>");
-//                }
-//                out.println("</ul>");
-//            } else {
-//                out.println("<p>Brak produktów w koszyku</p>");
-//            }
-            if (clothes.size() > 0) {
+            if (basket.getBasket().size() > 0) {
                 out.println("<h3>Produkty w koszyku:</h3>");
                 out.println("<ul>");
-                for (Cloth cloth : clothes) {
+                for (Cloth cloth : basket.getBasket()) {
                     String waterproof = "";
                     if (cloth.isWaterproof())
                         waterproof = " - wodoodporność";
@@ -182,8 +133,7 @@ public class ShopServlet extends HttpServlet {
             } else {
                 out.println("<p>Brak produktów w koszyku</p>");
             }
-            out.println("</body>");
-            out.println("</html>");
+            out.println("</body></html>");
         } finally {
             out.close();
         }
@@ -192,8 +142,7 @@ public class ShopServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
 
-        getServletContext().setAttribute("shop_storage", new ShopService());
-
+        getServletContext().setAttribute("products", new ClothService());
 
     }
 }
