@@ -17,9 +17,24 @@
 <jsp:useBean id="newslettersList" class="pl.spiascik.ug.store.service.NewsletterService" scope="session" />
 
 <%
-    Newsletter n = new Newsletter();
+
+    String name = request.getParameter("name");
+    String dateFrom = request.getParameter("dateFrom");
+    String dateTo = request.getParameter("dateTo");
+    String frequency = request.getParameter("freq");
+    boolean subject1 = false;
+    boolean subject2 = false;
+
+    if (request.getParameter("subject1") != null)
+        subject1 = true;
+    if (request.getParameter("subject2") != null)
+        subject2 = true;
+
+
+
+    Newsletter n = new Newsletter(name,dateFrom,dateTo,frequency,subject1,subject2);
     newslettersList.addNewNewsletters(n);
 %>
-<p>Dodano użytkownika do newslettera</p>
+<p>Dodano newsletter:  <% out.print(n.getName()); %></p>
 </body>
 </html>

@@ -20,24 +20,26 @@
 
 
 <% if (newslettersList.getNewsletters().size() > 0) { %>
-<h3>Produkty w koszyku:</h3>
 <ul>
     <%
         for (Newsletter n : newslettersList.getNewsletters()) {
-            String waterproof = "";
-            if (c.isWaterproof())
-                waterproof = " - wodoodporność";
+            String subject1 = "";
+            String subject2 = "";
+            if (n.isSubject1())
+                subject1 = " - temat 1";
+            if (n.isSubject2())
+                subject2 = " - temat 2";
     %>
     <li>
         <%
-            out.println("Produkt:" + c.getName() + waterproof + "<br/>Cena: " + c.getPrice() + "zł<br/>" +
-                    "Data dodania: <i>" + c.getProductionDate() + "</i>");
+            out.println("Newsletter:" + n.getName() + subject1 + subject2 + "<br/>Data od: " + n.getDateFrom() + "<br/>" +
+                    "Data do: " + n.getDateTo() + "");
         %>
     </li>
-    <form action='removeFromBasket.jsp' method='post'>
+    <form action='removeNewsletter.jsp' method='post'>
         <input type='hidden' name='formName' value='addToBasket'/>
-        <input type='text' name='id' value='<% out.print(c.getId()); %>' hidden/>
-        <button type='submit'>Usuń z koszyka</button>
+        <input type='text' name='id' value='<% out.print(n.getId()); %>' hidden/>
+        <button type='submit'>Usuń newsletter</button>
         <br/><br/>
     </form>
     <% } %>

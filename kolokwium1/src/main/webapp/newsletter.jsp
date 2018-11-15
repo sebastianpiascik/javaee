@@ -16,11 +16,11 @@
 <h2>Form:</h2>
 <form method="post" action="index.jsp">
     <label for="name">Imie</label>
-    <input type="text" id="name" name="name"><br/>
+    <input type="text" id="name" name="name"><br/><br/>
     <label for="date_from">Data od</label>
-    <input type="text" id="date_from" name="date_from"><br/>
+    <input type="text" id="date_from" name="date_from"><br/><br/>
     <label for="date_from">Data do</label>
-    <input type="text" id="date_to" name="date_to"><br/>
+    <input type="text" id="date_to" name="date_to"><br/><br/>
     <p>Częstotliwość</p>
     <input type="radio" name="freq" value="codziennie" checked>Codziennie<br/>
     <input type="radio" name="freq" value="tygodniowo">Tygodniowo<br/>
