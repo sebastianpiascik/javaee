@@ -19,8 +19,8 @@
 <%
 
     String name = request.getParameter("name");
-    String dateFrom = request.getParameter("dateFrom");
-    String dateTo = request.getParameter("dateTo");
+    String dateFrom = request.getParameter("date_from");
+    String dateTo = request.getParameter("date_to");
     String frequency = request.getParameter("freq");
     boolean subject1 = false;
     boolean subject2 = false;
@@ -36,5 +36,7 @@
     newslettersList.addNewNewsletters(n);
 %>
 <p>Dodano newsletter:  <% out.print(n.getName()); %></p>
+<p><a href='allnewsletters.jsp'>Pokaż listę newsletterów</a></p>
+<p><a href='newsletter.jsp'>Dodaj nowy newsletter</a></p>
 </body>
 </html>

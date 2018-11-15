@@ -1,4 +1,5 @@
 <%@ page import="pl.spiascik.ug.store.domain.Newsletter" %>
+<%@ page import="pl.spiascik.ug.store.service.NewsletterService" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -22,6 +23,10 @@
 <% if (newslettersList.getNewsletters().size() > 0) { %>
 <ul>
     <%
+
+//        Newsletter newsletter = (Newsletter) session.getAttribute("newsletter");
+
+
         for (Newsletter n : newslettersList.getNewsletters()) {
             String subject1 = "";
             String subject2 = "";
@@ -37,7 +42,6 @@
         %>
     </li>
     <form action='removeNewsletter.jsp' method='post'>
-        <input type='hidden' name='formName' value='addToBasket'/>
         <input type='text' name='id' value='<% out.print(n.getId()); %>' hidden/>
         <button type='submit'>Usuń newsletter</button>
         <br/><br/>
@@ -49,6 +53,7 @@ else {
     out.println("<p>Brak newsletterów</p>");
 }
 %>
+<p><a href='newsletter.jsp'>Dodaj nowy newsletter</a></p>
 
 </body>
 </html>

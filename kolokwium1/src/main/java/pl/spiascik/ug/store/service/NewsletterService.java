@@ -15,4 +15,19 @@ public class NewsletterService {
     public static void addNewNewsletters(Newsletter n){
         newsletters.add(n);
     }
+
+
+    public static void removeNewsletter(int id){
+        for(Newsletter n : newsletters){
+            if(n.getId() == id){
+                newsletters.remove(id);
+                break;
+            }
+        }
+    }
+
+
+    public static void removeNewsletter(Newsletter newsl){
+        newsletters.remove(newsl);
+    }
 }

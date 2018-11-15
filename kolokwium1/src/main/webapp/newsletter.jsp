@@ -14,7 +14,7 @@
 <body>
 
 <h2>Form:</h2>
-<form method="post" action="index.jsp">
+<form method="post" action="addNewsletter.jsp">
     <label for="name">Imie</label>
     <input type="text" id="name" name="name"><br/><br/>
     <label for="date_from">Data od</label>
@@ -31,5 +31,7 @@
     <input type="checkbox" id="subject2" name="subject2"><br/><br/>
     <button type="submit">Akceptuj</button>
 </form>
+<br/>
+<p><a href='allnewsletters.jsp'>Zobacz listę newsletterów</a></p>
 </body>
 </html>
