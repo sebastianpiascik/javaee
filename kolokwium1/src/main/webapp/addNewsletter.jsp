@@ -18,6 +18,7 @@
 
 <%
 
+    int id = newslettersList.getNewsletters().size();
     String name = request.getParameter("name");
     String dateFrom = request.getParameter("date_from");
     String dateTo = request.getParameter("date_to");
@@ -32,7 +33,7 @@
 
 
 
-    Newsletter n = new Newsletter(name,dateFrom,dateTo,frequency,subject1,subject2);
+    Newsletter n = new Newsletter(id,name,dateFrom,dateTo,frequency,subject1,subject2);
     newslettersList.addNewNewsletters(n);
 %>
 <p>Dodano newsletter:  <% out.print(n.getName()); %></p>

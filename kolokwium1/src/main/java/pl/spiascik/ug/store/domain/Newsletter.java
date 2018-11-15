@@ -10,7 +10,8 @@ public class Newsletter {
     private boolean subject1;
     private boolean subject2;
 
-    public Newsletter(String name, String dateFrom, String dateTo, String frequency, boolean subject1, boolean subject2){
+    public Newsletter(int id,String name, String dateFrom, String dateTo, String frequency, boolean subject1, boolean subject2){
+        this.id = id;
         this.name = name;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
