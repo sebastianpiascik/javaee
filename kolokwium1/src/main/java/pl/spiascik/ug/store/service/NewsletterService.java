@@ -20,7 +20,7 @@ public class NewsletterService {
     public static void removeNewsletter(int id){
         for(Newsletter n : newsletters){
             if(n.getId() == id){
-                newsletters.remove(id);
+                newsletters.remove(n);
                 break;
             }
         }
