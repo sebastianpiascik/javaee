@@ -1,4 +1,5 @@
-# javaee
-Technologie Java Enterprise
+# Java Enterprise Edition
 
-# Sebastian Piaścik
+> Sebastian Piaścik
+
+> 2018 - 2019
