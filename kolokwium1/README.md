@@ -8,7 +8,7 @@ Create Newsletter
 
 > Każdy widzi swoje ustawienia. Ustawienia zapisywane w sesji
 
--   /allnewsletter
+-   /allnewsletters
 
 > Wszystkie ustawienia newslettera
 
