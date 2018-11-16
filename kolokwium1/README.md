@@ -1,3 +1,11 @@
+# Kolokwium 1
+
+Create Newsletter
+
+-   /newsletter
+
+> Pola: data (od - do) [text] , częstotliwość (codziennie, tygodniowo, miesięcznie) [radio], tematyka [checkbox]
+
 /newsletter
     1) daty od - do Pola tekstowe
     2) Czestotliwosc (radio buttons)
