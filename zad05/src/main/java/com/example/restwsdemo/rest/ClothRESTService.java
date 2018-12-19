@@ -25,22 +25,26 @@ public class ClothRESTService {
     @GET
     @Path("/{clothId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Cloth getPerson(@PathParam("clothId") Integer id) {
+    public Cloth getCloth(@PathParam("clothId") Integer id) {
         Cloth c = cm.getCloth(id);
-        return c;
+        System.out.println(c.getProductionDate());
+        if(c != null)
+            return c;
+        else
+            return null;
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Cloth> getClothess() {
+    public List<Cloth> getClothes() {
         return cm.getAllClothes();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addCloth(String name) {
-//        return Response.ok("Cloth: " + name).build();
-        cm.addCloth(new Cloth(name));
+    public Response addCloth(Cloth cloth) {
+        System.out.println("Data: "+cloth.getProductionDate());
+        cm.addCloth(cloth);
 
         return Response.status(201).entity("Cloth").build();
     }
@@ -56,6 +60,17 @@ public class ClothRESTService {
     public Response deleteCloth(@PathParam("clothId") Integer id) {
         cm.deleteCloth(cm.getCloth(id));
         return Response.status(200).build();
+    }
+
+    @PUT
+    @Path("/{clothId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateCloth(@PathParam("clothId") Integer id, Cloth cloth) {
+        if(cm.updateCloth(id,cloth)){
+            return Response.ok("Zmodyfikowano").build();
+        }
+        return Response.status(404).build();
     }
 
 }
