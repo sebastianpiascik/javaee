@@ -31,4 +31,13 @@ public class ChocolateService {
         chocolates.add(chocolate);
         setIdCounter(getIdCounter() + 1);
     }
+
+    public void removeChocolate(int id){
+        for(Chocolate chocolate: chocolates){
+            if(chocolate.getId() == id){
+                chocolates.remove(chocolate);
+                break;
+            }
+        }
+    }
 }

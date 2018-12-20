@@ -5,24 +5,24 @@ import pl.spiascik.ug.store.domain.Chocolate;
 import java.util.ArrayList;
 
 public class ShopService {
-    private static ArrayList<Chocolate> basket = new ArrayList<Chocolate>();
+    private ArrayList<Chocolate> basket = new ArrayList<Chocolate>();
 
-    public static ArrayList<Chocolate> getBasket(){
+    public ArrayList<Chocolate> getBasket(){
         return basket;
     }
 
-    public static Chocolate getChocolate(int id) {
+    public Chocolate getChocolate(int id) {
         return basket.get(id);
     }
 
-    public static void addToBasket(int id){
+    public void addToBasket(int id){
         basket.add(ChocolateService.getChocolate(id));
     }
 
-    public static void removeFromBasket(int id){
-        for(Chocolate cloth: basket){
-            if(cloth.getId() == id){
-                basket.remove(id);
+    public void removeFromBasket(int id){
+        for(Chocolate chocolate: basket){
+            if(chocolate.getId() == id){
+                basket.remove(chocolate);
                 break;
             }
         }

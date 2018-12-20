@@ -34,7 +34,7 @@
 
             <li>
                 <%
-                    out.println("Produkt:" + c.getName() + white + "<br/>Cena: " + c.getPrice() + "zł<br/>" +
+                    out.println("Produkt: "+ c.getId()+"." + c.getName() + white + "<br/>Cena: " + c.getPrice() + "zł<br/>" +
                             "Data dodania: <i>" + c.getProductionDate() + "</i>");
                 %>
             </li>
@@ -42,6 +42,12 @@
                 <input type='hidden' name='formName' value='addToBasket'/>
                 <input type='text' name='id' value='<% out.print(c.getId()); %>' hidden/>
                 <button type='submit'>Dodaj do koszyka</button>
+                <br/><br/>
+            </form>
+            <form action='removeProduct.jsp' method='post'>
+                <input type='hidden' name='formName' value='removeProduct'/>
+                <input type='text' name='id' value='<% out.print(c.getId()); %>' hidden/>
+                <button type='submit'>Usuń produkt</button>
                 <br/><br/>
             </form>
             <% } %>

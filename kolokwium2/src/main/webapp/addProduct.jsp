@@ -14,34 +14,20 @@
     </style>
 </head>
 <body>
-    <%--<jsp:useBean id="cloth" class="pl.spiascik.ug.store.domain.Chocolate" scope="session" />--%>
-
-    <%--<jsp:setProperty name="cloth" property="*" />--%>
 
     <jsp:useBean id="chocolates" class="pl.spiascik.ug.store.service.ChocolateService" scope="application" />
 
     <%
 
+        int id = chocolates.getAllChocolates().size();
         String name = request.getParameter("name");
         double price = Double.valueOf(request.getParameter("price").replace(",","."));
         String productionDate = request.getParameter("productionDate");
-
-        java.sql.Date productionDate=null;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        if(request.getParameter("productionDate") != null && !request.getParameter("productionDate").equals("")){
-            try {
-                Date pDate = simpleDateFormat.parse(request.getParameter("productionDate"));
-                productionDate = new java.sql.Date(pDate.getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-
         boolean isWhite = false;
         if (request.getParameter("isWhite") != null)
             isWhite = true;
 
-        Chocolate newCloth = new Chocolate(name,productionDate,price,isWhite);
+        Chocolate newCloth = new Chocolate(id,name,productionDate,price,isWhite);
 
         chocolates.addChocolate(newCloth);
     %>
