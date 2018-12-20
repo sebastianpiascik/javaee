@@ -10,14 +10,15 @@ public class Chocolate {
     private String name;
     private Date productionDate;
     private double price;
-
     private boolean isWhite;
+    private boolean isBlack;
 
-    public Chocolate(int id, String name, String productionDate, double price, boolean isWhite) throws ParseException {
+    public Chocolate(int id, String name, String productionDate, double price, boolean isWhite, boolean isBlack) throws ParseException {
         this.id = id;
         this.name = name;
         this.price = price;
         this.isWhite = isWhite;
+        this.isBlack = isBlack;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         this.productionDate = new java.sql.Date(dateFormat.parse(productionDate).getTime());
     }
@@ -67,15 +68,12 @@ public class Chocolate {
         isWhite = white;
     }
 
-    @Override
-    public String toString() {
-        return "Chocolate{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", productionDate=" + productionDate +
-                ", price=" + price +
-                ", isWhite=" + isWhite +
-                '}';
+    public boolean isBlack() {
+        return isBlack;
+    }
+
+    public void setBlack(boolean black) {
+        isBlack = black;
     }
 
 

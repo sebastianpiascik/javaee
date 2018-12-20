@@ -30,11 +30,14 @@
                     String white = "";
                     if (c.isWhite())
                         white = " - biała";
+                    String black = "";
+                    if (c.isBlack())
+                        black = " - gorzka";
             %>
 
             <li>
                 <%
-                    out.println("Produkt: "+ c.getId()+"." + c.getName() + white + "<br/>Cena: " + c.getPrice() + "zł<br/>" +
+                    out.println("Produkt: "+ c.getId()+"." + c.getName() + white + black + "<br/>Cena: " + c.getPrice() + "zł<br/>" +
                             "Data dodania: <i>" + c.getProductionDate() + "</i>");
                 %>
             </li>
@@ -68,10 +71,14 @@
                     String white = "";
                     if (c.isWhite())
                         white = " - biała";
+                    String black = "";
+                    if (c.isBlack())
+                        black = " - gorzka";
             %>
+
             <li>
                 <%
-                    out.println("Produkt:" + c.getName() + white + "<br/>Cena: " + c.getPrice() + "zł<br/>" +
+                    out.println("Produkt: "+ c.getId()+"." + c.getName() + white + black + "<br/>Cena: " + c.getPrice() + "zł<br/>" +
                             "Data dodania: <i>" + c.getProductionDate() + "</i>");
                 %>
             </li>

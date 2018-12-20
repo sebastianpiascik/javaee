@@ -26,8 +26,11 @@
         boolean isWhite = false;
         if (request.getParameter("isWhite") != null)
             isWhite = true;
+        boolean isBlack = false;
+        if (request.getParameter("isBlack") != null)
+            isBlack = true;
 
-        Chocolate newCloth = new Chocolate(id,name,productionDate,price,isWhite);
+        Chocolate newCloth = new Chocolate(id,name,productionDate,price,isWhite,isBlack);
 
         chocolates.addChocolate(newCloth);
     %>

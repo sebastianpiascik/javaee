@@ -23,6 +23,8 @@
             <input type='text' id="price" name='price' /><br/><br/>
             <label for="isWhite">Biała: </label>
             <input type='checkbox' id="isWhite" name="isWhite" /><br/><br/>
+            <label for="isBlack">Gorzka: </label>
+            <input type='checkbox' id="isBlack" name="isBlack" /><br/><br/>
             <button type='submit'>Dodaj produkt</button>
         </fieldset>
     </form>
