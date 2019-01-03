@@ -1,7 +1,6 @@
 package pl.spiascik.ug.clothesapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
