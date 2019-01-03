@@ -15,7 +15,19 @@ public class ClothManager {
     private List<Cloth> db = Collections.synchronizedList(new ArrayList<Cloth>());
 
     public void addCloth(Cloth cloth) {
+        cloth.setId(db.size());
         db.add(cloth);
+    }
+
+    public boolean updateCloth(int id, Cloth cloth) {
+        if(db.get(id) != null){
+            db.get(id).setName(cloth.getName());
+            db.get(id).setProductionDate(cloth.getProductionDate());
+            db.get(id).setPrice(cloth.getPrice());
+            db.get(id).setWaterproof(cloth.isWaterproof());
+            return true;
+        } else
+            return false;
     }
 
     public void deleteCloth(Cloth cloth) {
@@ -27,7 +39,7 @@ public class ClothManager {
             if(c.getId() == id)
                 return c;
         }
-        return new Cloth("default");
+        return null;
     }
 
     public List<Cloth> getAllClothes() {

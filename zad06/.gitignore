@@ -1,31 +1,20 @@
-# ignore all bin directories
-# matches "bin" in any subfolder
-bin/
+*.class
 
-# ignore all target directories
-target/
+# Package Files #
+#*.jar
+*.war
+*.ear
 
-# ignore all files ending with ~
-*~ 
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
 
-# ignore eclipse directories and project files
+
+# eclipse conf file
+.settings
 .settings/
-.project
 .classpath
+.project
 
-# OSX
-
-*.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-
-# Thumbnails
-._*
-
-# IntelliJ
-*.iml
-.idea
+# building
+target
+tmp*
