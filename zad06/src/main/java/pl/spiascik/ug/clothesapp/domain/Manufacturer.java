@@ -16,7 +16,7 @@ public class Manufacturer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "manufacturer",cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Cloth> clothes = new ArrayList<Cloth>();
 
     public Manufacturer(String name) {

@@ -15,6 +15,8 @@ import org.junit.Test;
 import pl.spiascik.ug.clothesapp.domain.Cloth;
 import com.jayway.restassured.RestAssured;
 
+import java.text.ParseException;
+
 public class ClothServiceIT {
 
     private static final String PERSON_FIRST_NAME = "Jasiu";
@@ -27,18 +29,26 @@ public class ClothServiceIT {
         RestAssured.basePath = "/clothesapp/api";
     }
 
-
     @Test
     public void addCloth(){
 //        delete("/person/").then().assertThat().statusCode(200);
 //
-//        Person person = new Person(PERSON_FIRST_NAME, PERSON_LAST_NAME, 1976);
-//
-//        given().
-//                contentType(MediaType.APPLICATION_JSON).
-//                body(person).
-//                when().
-//                post("/person/").then().assertThat().statusCode(201);
+        try{
+            Cloth cloth = new Cloth("T-shirt name", "2018-10-10",10.00,true);
+            given().
+                    contentType(MediaType.APPLICATION_JSON).
+                    body(cloth).
+                    when().
+                    post("/cloth/").then().assertThat().statusCode(201);
+        } catch (ParseException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void removeCloth(){
+        delete("/cloth/5").then().assertThat().statusCode(200);
     }
 
 }

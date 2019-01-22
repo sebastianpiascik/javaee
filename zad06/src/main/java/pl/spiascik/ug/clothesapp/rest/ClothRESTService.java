@@ -74,16 +74,23 @@ public class ClothRESTService {
     }
 
     @POST
-    @Path("/wearer/{wearerId}")
+    @Path("/{clothId}/{wearerId}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addClothWearer(Cloth cloth, @PathParam("wearerId") Long id) {
-        cm.addClothWearer(cloth,id);
+    public Response addClothWearer(@PathParam("clothId") Long clothId, @PathParam("wearerId") Long wearerId) {
+        cm.addClothWearer(clothId,wearerId);
         return Response.status(201).entity("Added wearer to cloth").build();
     }
 
     @DELETE
     public Response clearClothes() {
         cm.clearClothes();
+        return Response.status(200).build();
+    }
+
+    @DELETE
+    @Path("/{clothId}")
+    public Response deleteCloth(@PathParam("clothId") Long id) {
+        cm.deleteCloth(id);
         return Response.status(200).build();
     }
 

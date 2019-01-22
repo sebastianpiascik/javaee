@@ -1,8 +1,6 @@
 package pl.spiascik.ug.clothesapp.service;
 
-import pl.spiascik.ug.clothesapp.domain.Cloth;
-import pl.spiascik.ug.clothesapp.domain.Type;
-import pl.spiascik.ug.clothesapp.domain.Wearer;
+import pl.spiascik.ug.clothesapp.domain.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -11,6 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.websocket.Session;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 //@Singleton
@@ -24,12 +24,18 @@ public class ClothManager {
     TypeManager tm;
     @EJB
     WearerManager wm;
+    @EJB
+    ManufacturerManager mm;
 
     public void addCloth(Cloth cloth) {
         Type type = tm.getTypeById((long) 3);
         Wearer wearer = wm.getWearerById((long) 3);
+        Fabric fabric = em.find(Fabric.class,1);
+        Manufacturer manufacturer = mm.getManufacturerById((long) 1);
         cloth.getWearers().add(wearer);
         cloth.setType(type);
+        cloth.setFabric(fabric);
+        cloth.setManufacturer(manufacturer);
         em.persist(cloth);
     }
 
@@ -40,6 +46,12 @@ public class ClothManager {
 
     public void clearClothes() {
         em.createNamedQuery("cloth.deleteAll").executeUpdate();
+    }
+
+    public void deleteCloth(Long id) {
+        em.createNamedQuery("cloth.deleteCloth").setParameter("id", id).executeUpdate();
+//        Cloth cloth = em.find(Cloth.class, id);
+//        em.remove(cloth);
     }
 
     public void updateCloth(Cloth cloth) {
@@ -65,9 +77,10 @@ public class ClothManager {
         return em.createNamedQuery("cloth.byType").setParameter("id", id).getResultList();
     }
 
-    public void addClothWearer(Cloth cloth, Long id) {
-        Wearer wearer = wm.getWearerById(id);
-        cloth.getWearers().add(wearer);
-        em.merge(cloth);
+    public void addClothWearer(Long clothId, Long wearerId) {
+        Wearer wearer = wm.getWearerById(wearerId);
+        Cloth retrieved = em.find(Cloth.class, clothId);
+        retrieved.getWearers().add(wearer);
+        em.merge(retrieved);
     }
 }
