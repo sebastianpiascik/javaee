@@ -40,11 +40,28 @@ public class ClothRESTService {
     }
 
     @GET
+    @Path("/wearers/{clothId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getClothWearers(@PathParam("clothId") Long id) {
+        List<Cloth> clothes = cm.getClothWearers(id);
+        return Response.status(200).entity(clothes).build();
+    }
+
+    @GET
+    @Path("/type/{typeId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllClothOfType(@PathParam("typeId") Long id) {
+        List<Cloth> clothes = cm.getAllClothOfType(id);
+        return Response.status(200).entity(clothes).build();
+//        return Response.status(200).entity("getAllClothOfType : " + name).build();
+    }
+
+    @GET
     @Path("/{clothId}")
     @Produces(MediaType.APPLICATION_JSON)
-    @SuppressWarnings("unchecked")
     public Response getClothById(@PathParam("clothId") Long id) {
-        Cloth cloth = cm.getClothById(id);
+        Cloth cloth = (Cloth) cm.getClothById(id);
+        System.out.println(cloth);
         return Response.status(200).entity(cloth).build();
     }
 
@@ -56,6 +73,14 @@ public class ClothRESTService {
         return Response.status(201).entity("Added new cloth").build();
     }
 
+    @POST
+    @Path("/wearer/{wearerId}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addClothWearer(Cloth cloth, @PathParam("wearerId") Long id) {
+        cm.addClothWearer(cloth,id);
+        return Response.status(201).entity("Added wearer to cloth").build();
+    }
+
     @DELETE
     public Response clearClothes() {
         cm.clearClothes();
@@ -63,7 +88,7 @@ public class ClothRESTService {
     }
 
     @PUT
-    @Path("/{clothId}")
+    @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateCloth(Cloth cloth) {

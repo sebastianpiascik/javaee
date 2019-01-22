@@ -18,6 +18,8 @@
 		<jta-data-source>java:/jdbc/ClothesappDS</jta-data-source>
 
 		<properties>
+			<!-- Dodane -->
+			<!--<property name="hibernate.enable_lazy_load_no_trans" value="true"/>-->
 			<!-- Properties for Hibernate (default provider for JBoss AS) -->
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
 			<property name="hibernate.show_sql" value="true" />

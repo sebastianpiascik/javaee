@@ -5,13 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "manufacturer.all", query = "Select m.id, m.name from Manufacturer m"),
+        @NamedQuery(name = "manufacturer.deleteAll", query="Delete from Manufacturer"),
+        @NamedQuery(name = "manufacturer.clothesWithType", query="Select c.name, c.price, c.type.name, m.name from Manufacturer m JOIN m.clothes c WHERE m.id = :id AND c.type.name = :name")
+})
 public class Manufacturer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Cloth> clothes = new ArrayList<Cloth>();
 
     public Manufacturer(String name) {

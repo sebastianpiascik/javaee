@@ -3,22 +3,18 @@ package pl.spiascik.ug.clothesapp.domain;
 import javax.persistence.*;
 
 @Entity
-@NamedQueries({
-        @NamedQuery(name = "type.all", query = "Select t from Type t"),
-        @NamedQuery(name = "type.deleteAll", query="Delete from Type")
-})
-public class Type {
+public class Fabric {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    public Type(String name) {
+    public Fabric(String name) {
         this.name = name;
     }
 
-    public Type(){
+    public Fabric(){
         super();
     }
 
@@ -37,5 +33,4 @@ public class Type {
     public void setName(String name) {
         this.name = name;
     }
-
 }
