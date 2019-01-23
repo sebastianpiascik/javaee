@@ -1,16 +1,11 @@
 package pl.spiascik.ug.clothesapp.service;
 
 import pl.spiascik.ug.clothesapp.domain.Type;
-import pl.spiascik.ug.clothesapp.domain.Type;
-import pl.spiascik.ug.clothesapp.domain.Wearer;
-
-import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-//@Singleton
 @Stateless
 public class TypeManager {
 
@@ -34,6 +29,6 @@ public class TypeManager {
     }
 
     public Type getTypeById(Long id) {
-        return em.find(Type.class, id);
+        return (Type) em.createNamedQuery("type.byId").setParameter("id", id).getSingleResult();
     }
 }

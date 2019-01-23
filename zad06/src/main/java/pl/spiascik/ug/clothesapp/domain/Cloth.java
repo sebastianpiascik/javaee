@@ -1,7 +1,6 @@
 package pl.spiascik.ug.clothesapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -22,8 +21,10 @@ import java.util.Collection;
         @NamedQuery(name = "cloth.deleteClothesByTypeByManufacturer", query="Delete from Cloth c WHERE c.type.name = :tName AND c.manufacturer.name = :mName"),
         @NamedQuery(name = "cloth.byType", query="SELECT c.id, c.name FROM Cloth c WHERE c.type.id = :id"),
         @NamedQuery(name = "cloth.allWearers", query="SELECT w FROM Wearer w JOIN w.clothes c WHERE c.id = :id"),
-        @NamedQuery(name = "cloth.addWearer", query="SELECT w FROM Wearer w JOIN w.clothes c WHERE c.id = :id")
+        @NamedQuery(name = "cloth.addWearer", query="SELECT w FROM Wearer w JOIN w.clothes c WHERE c.id = :id"),
+        @NamedQuery(name = "cloth.amountByType", query="SELECT count(c) FROM Cloth c WHERE c.type.id = :id")
 })
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Cloth {
 
     @Id
@@ -42,7 +43,7 @@ public class Cloth {
     )
     private Collection<Wearer> wearers = new ArrayList<Wearer>();
 
-//    @JsonManagedReference
+    @JsonBackReference(value="cloth-type")
     @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Type type;
 
@@ -50,7 +51,7 @@ public class Cloth {
     @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, orphanRemoval = true)
     private Fabric fabric;
 
-//    @JsonManagedReference
+    @JsonBackReference(value="cloth-manufacturer")
     @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Manufacturer manufacturer;
 

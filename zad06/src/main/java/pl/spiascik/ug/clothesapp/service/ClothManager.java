@@ -30,7 +30,7 @@ public class ClothManager {
     public void addCloth(Cloth cloth) {
         Type type = tm.getTypeById((long) 3);
         Wearer wearer = wm.getWearerById((long) 3);
-        Fabric fabric = em.find(Fabric.class,1);
+        Fabric fabric = em.find(Fabric.class,(long) 1);
         Manufacturer manufacturer = mm.getManufacturerById((long) 1);
         cloth.getWearers().add(wearer);
         cloth.setType(type);
@@ -68,8 +68,12 @@ public class ClothManager {
         return em.createNamedQuery("cloth.allWearers").setParameter("id", id).getResultList();
     }
 
-    public List<Cloth> getAllClothOfType(Long id) {
+    public List<Cloth> getAllClothByType(Long id) {
         return em.createNamedQuery("cloth.byType").setParameter("id", id).getResultList();
+    }
+
+    public long getNumberOfClothesByType(Long id) {
+        return (Long) em.createNamedQuery("cloth.amountByType").setParameter("id", id).getSingleResult();
     }
 
     public void addClothWearer(Long clothId, Long wearerId) {

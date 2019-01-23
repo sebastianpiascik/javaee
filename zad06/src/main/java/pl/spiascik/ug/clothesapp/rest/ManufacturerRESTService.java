@@ -1,5 +1,6 @@
 package pl.spiascik.ug.clothesapp.rest;
 
+import com.google.gson.JsonArray;
 import pl.spiascik.ug.clothesapp.domain.Manufacturer;
 import pl.spiascik.ug.clothesapp.service.ManufacturerManager;
 
@@ -13,6 +14,9 @@ import javax.persistence.PersistenceContext;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 @Path("manufacturer")
@@ -68,10 +72,15 @@ public class ManufacturerRESTService {
 
     @GET
     @Path("/query/clotheswithtype/{manufacturerId}/{typeName}")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBooksAuthor(@PathParam("manufacturerId") Long id, @PathParam("typeName") String typeName){
+    public Response getManufacturerClothesWithTypeBetweenWearerYob(JsonObject incomingData, @PathParam("manufacturerId") Long id, @PathParam("typeName") String typeName){
 
-        List<Object[]> rawClothes = mm.getManufacturerClothesWithType(id,typeName);
+
+        int yob_from = incomingData.getInt("yob_from");
+        int yob_to = incomingData.getInt("yob_to");
+
+        List<Object[]> rawClothes = mm.getManufacturerClothesWithTypeBetweenWearerYob(id,typeName, yob_from, yob_to);
         JsonArrayBuilder clothes = Json.createArrayBuilder();
 
         for(Object[] rawCloth: rawClothes){
@@ -80,12 +89,14 @@ public class ManufacturerRESTService {
             double clothPrice = (Double) rawCloth[1];
             String clothTypeName = (String) rawCloth[2];
             String manufacturerName = (String) rawCloth[3];
+            int wearerYob = (Integer) rawCloth[4];
 
             clothes.add(Json.createObjectBuilder()
                     .add("clothName", clothName)
                     .add("clothPrice", clothPrice)
                     .add("clothTypeName", clothTypeName)
-                    .add("manufacturerName", manufacturerName));
+                    .add("manufacturerName", manufacturerName)
+                    .add("wearerYob", wearerYob));
 
         }
 

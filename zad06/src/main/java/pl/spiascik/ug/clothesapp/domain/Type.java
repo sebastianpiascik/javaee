@@ -1,6 +1,9 @@
 package pl.spiascik.ug.clothesapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,9 +11,11 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "type.all", query = "Select t from Type t"),
-        @NamedQuery(name = "type.deleteAll", query="Delete from Type")
+        @NamedQuery(name = "type.all", query = "Select t.id, t.name from Type t"),
+        @NamedQuery(name = "type.deleteAll", query="Delete from Type"),
+        @NamedQuery(name = "type.byId", query = "Select t from Type t JOIN fetch t.clothes tc where t.id = :id"),
 })
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Type {
 
     @Id
@@ -18,7 +23,7 @@ public class Type {
     private Long id;
     private String name;
 
-//    @JsonBackReference
+    @JsonManagedReference(value="cloth-type")
     @OneToMany(mappedBy = "type",cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Cloth> clothes = new ArrayList<Cloth>();
 

@@ -50,10 +50,18 @@ public class ClothRESTService {
     @GET
     @Path("/type/{typeId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllClothOfType(@PathParam("typeId") Long id) {
-        List<Cloth> clothes = cm.getAllClothOfType(id);
+    public Response getAllClothByType(@PathParam("typeId") Long id) {
+        List<Cloth> clothes = cm.getAllClothByType(id);
         return Response.status(200).entity(clothes).build();
-//        return Response.status(200).entity("getAllClothOfType : " + name).build();
+    }
+
+    @GET
+    @Path("/typeAmount/{typeId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getNumberOfClothesByType(@PathParam("typeId") Long id) {
+//        List<Cloth> clothes = cm.getNumberOfClothesByType(id);
+        long amount = cm.getNumberOfClothesByType(id);
+        return Response.status(200).entity(amount).build();
     }
 
     @GET

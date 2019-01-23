@@ -34,7 +34,7 @@ public class ManufacturerManager {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Object[]> getManufacturerClothesWithType(Long id, String typeName){
-        return em.createNamedQuery("manufacturer.clothesWithType").setParameter("id", id).setParameter("name", typeName).getResultList();
+    public List<Object[]> getManufacturerClothesWithTypeBetweenWearerYob(Long id, String typeName, int yob_from, int yob_to){
+        return em.createNamedQuery("manufacturer.clothesWithTypeBetweenWearerYob").setParameter("id", id).setParameter("name", typeName).setParameter("yob_from", yob_from).setParameter("yob_to", yob_to).getResultList();
     }
 }
