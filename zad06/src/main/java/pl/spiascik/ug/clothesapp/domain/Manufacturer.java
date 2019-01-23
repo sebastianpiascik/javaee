@@ -12,6 +12,7 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "manufacturer.all", query = "Select m.id, m.name from Manufacturer m"),
+        @NamedQuery(name = "manufacturer.byId", query = "Select m from Manufacturer m JOIN fetch m.clothes mc where m.id = :id"),
         @NamedQuery(name = "manufacturer.deleteAll", query="Delete from Manufacturer"),
         @NamedQuery(name = "manufacturer.clothesWithTypeBetweenWearerYob", query="Select c.name, c.price, c.type.name, m.name, cw.yob from Manufacturer m JOIN m.clothes c JOIN c.wearers cw WHERE m.id = :id AND c.type.name = :name AND cw.yob BETWEEN :yob_from AND :yob_to")
 })

@@ -18,7 +18,7 @@ import java.util.Collection;
         @NamedQuery(name = "cloth.byId", query = "Select c from Cloth c JOIN fetch c.type ct JOIN fetch c.manufacturer cm where c.id = :id"),
         @NamedQuery(name = "cloth.deleteAll", query="Delete from Cloth"),
         @NamedQuery(name = "cloth.deleteCloth", query="Delete from Cloth c WHERE c.id = :id"),
-        @NamedQuery(name = "cloth.deleteClothesByTypeByManufacturer", query="Delete from Cloth c WHERE c.type.name = :tName AND c.manufacturer.name = :mName"),
+        @NamedQuery(name = "cloth.deleteClothesByTypeByManufacturer", query="Delete from Cloth c WHERE c.type.id = :tId"),
         @NamedQuery(name = "cloth.byType", query="SELECT c.id, c.name FROM Cloth c WHERE c.type.id = :id"),
         @NamedQuery(name = "cloth.allWearers", query="SELECT w FROM Wearer w JOIN w.clothes c WHERE c.id = :id"),
         @NamedQuery(name = "cloth.addWearer", query="SELECT w FROM Wearer w JOIN w.clothes c WHERE c.id = :id"),

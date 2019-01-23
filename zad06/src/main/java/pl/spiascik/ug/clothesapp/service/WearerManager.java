@@ -23,7 +23,7 @@ public class WearerManager {
     }
 
     public List<Wearer> getAllClothesOfWearer() {
-        return em.createNamedQuery("wearer.all").getResultList();
+        return em.createNamedQuery("wearer.allClothes").getResultList();
     }
 
     public void clearWearers() {

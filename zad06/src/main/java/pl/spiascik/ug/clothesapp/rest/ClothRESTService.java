@@ -16,10 +16,6 @@ import java.util.List;
 @Stateless
 public class ClothRESTService {
 
-
-    @PersistenceContext
-    EntityManager em;
-
     @EJB
     ClothManager cm;
 
@@ -77,12 +73,14 @@ public class ClothRESTService {
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addCloth(Cloth cloth) {
+        System.out.println("dodaje");
+        System.out.println(cloth);
         cm.addCloth(cloth);
         return Response.status(201).entity("Added new cloth").build();
     }
 
     @POST
-    @Path("/{clothId}/{wearerId}")
+    @Path("/query/{clothId}/{wearerId}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addClothWearer(@PathParam("clothId") Long clothId, @PathParam("wearerId") Long wearerId) {
         cm.addClothWearer(clothId,wearerId);
@@ -103,10 +101,10 @@ public class ClothRESTService {
     }
 
     @DELETE
-    @Path("/{tName}/{mName}")
-    public Response deleteClothByTypeByManufacturer(@PathParam("tName") String tName, @PathParam("mName") String mName) {
-        System.out.println("ABC");
-        cm.deleteClothByTypeByManufacturer(tName,mName);
+    @Path("/query/{tId}")
+    public Response deleteClothByTypeByManufacturer(@PathParam("tId") Long tId) {
+        System.out.println(tId);;
+        cm.deleteClothByTypeByManufacturer(tId);
         return Response.status(200).build();
     }
 

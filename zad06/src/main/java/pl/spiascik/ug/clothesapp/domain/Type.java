@@ -13,7 +13,7 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "type.all", query = "Select t.id, t.name from Type t"),
         @NamedQuery(name = "type.deleteAll", query="Delete from Type"),
-        @NamedQuery(name = "type.byId", query = "Select t from Type t JOIN fetch t.clothes tc where t.id = :id"),
+        @NamedQuery(name = "type.byId", query = "Select t from Type t JOIN fetch t.clothes tc where t.id = :id")
 })
 @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Type {

@@ -10,6 +10,7 @@ import java.util.Set;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "wearer.all", query = "Select w from Wearer w"),
+        @NamedQuery(name = "wearer.allClothes", query = "Select w from Wearer w join fetch w.clothes wc"),
         @NamedQuery(name = "wearer.deleteAll", query="Delete from Wearer")
 })
 public class Wearer {

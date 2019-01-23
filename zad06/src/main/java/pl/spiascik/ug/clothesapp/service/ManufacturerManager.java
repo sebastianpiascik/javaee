@@ -30,7 +30,7 @@ public class ManufacturerManager {
     }
 
     public Manufacturer getManufacturerById(Long id) {
-        return em.find(Manufacturer.class, id);
+        return (Manufacturer) em.createNamedQuery("manufacturer.byId").setParameter("id", id).getSingleResult();
     }
 
     @SuppressWarnings("unchecked")

@@ -28,14 +28,14 @@ public class ClothManager {
     ManufacturerManager mm;
 
     public void addCloth(Cloth cloth) {
-        Type type = tm.getTypeById((long) 3);
-        Wearer wearer = wm.getWearerById((long) 3);
-        Fabric fabric = em.find(Fabric.class,(long) 1);
-        Manufacturer manufacturer = mm.getManufacturerById((long) 1);
-        cloth.getWearers().add(wearer);
-        cloth.setType(type);
-        cloth.setFabric(fabric);
-        cloth.setManufacturer(manufacturer);
+//        Type type = tm.getTypeById((long) 3);
+//        Wearer wearer = wm.getWearerById((long) 3);
+//        Fabric fabric = em.find(Fabric.class,(long) 1);
+//        Manufacturer manufacturer = mm.getManufacturerById((long) 1);
+//        cloth.getWearers().add(wearer);
+//        cloth.setType(type);
+//        cloth.setFabric(fabric);
+//        cloth.setManufacturer(manufacturer);
         em.persist(cloth);
     }
 
@@ -52,8 +52,8 @@ public class ClothManager {
         em.createNamedQuery("cloth.deleteCloth").setParameter("id", id).executeUpdate();
     }
 
-    public void deleteClothByTypeByManufacturer(String tName, String mName) {
-        em.createNamedQuery("cloth.deleteClothesByTypeByManufacturer").setParameter("tName", tName).setParameter("mName", mName).executeUpdate();
+    public void deleteClothByTypeByManufacturer(Long tId) {
+        em.createNamedQuery("cloth.deleteClothesByTypeByManufacturer").setParameter("tId", tId).executeUpdate();
     }
 
     public void updateCloth(Cloth cloth) {
