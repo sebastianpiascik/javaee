@@ -16,7 +16,6 @@ import java.util.List;
         @NamedQuery(name = "manufacturer.deleteAll", query="Delete from Manufacturer"),
         @NamedQuery(name = "manufacturer.clothesWithTypeBetweenWearerYob", query="Select c.name, c.price, c.type.name, m.name, cw.yob from Manufacturer m JOIN m.clothes c JOIN c.wearers cw WHERE m.id = :id AND c.type.name = :name AND cw.yob BETWEEN :yob_from AND :yob_to")
 })
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Manufacturer {
 
     @Id

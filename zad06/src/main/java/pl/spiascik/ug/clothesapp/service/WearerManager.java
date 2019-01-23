@@ -1,14 +1,11 @@
 package pl.spiascik.ug.clothesapp.service;
 
 import pl.spiascik.ug.clothesapp.domain.Wearer;
-
-import javax.ejb.Singleton;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-//@Singleton
 @Stateless
 public class WearerManager {
     @PersistenceContext
@@ -22,7 +19,7 @@ public class WearerManager {
         return em.createNamedQuery("wearer.all").getResultList();
     }
 
-    public List<Wearer> getAllClothesOfWearer() {
+    public List<Wearer> getAllClothesByWearer() {
         return em.createNamedQuery("wearer.allClothes").getResultList();
     }
 

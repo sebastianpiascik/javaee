@@ -28,14 +28,15 @@ public class ClothManager {
     ManufacturerManager mm;
 
     public void addCloth(Cloth cloth) {
-//        Type type = tm.getTypeById((long) 3);
-//        Wearer wearer = wm.getWearerById((long) 3);
-//        Fabric fabric = em.find(Fabric.class,(long) 1);
-//        Manufacturer manufacturer = mm.getManufacturerById((long) 1);
-//        cloth.getWearers().add(wearer);
-//        cloth.setType(type);
-//        cloth.setFabric(fabric);
-//        cloth.setManufacturer(manufacturer);
+        Type type = em.find(Type.class,(long) 3);
+        Wearer wearer = em.find(Wearer.class,(long) 3);
+        Fabric fabric = em.find(Fabric.class,(long) 1);
+        Manufacturer manufacturer = em.find(Manufacturer.class,(long) 1);
+
+        cloth.getWearers().add(wearer);
+        cloth.setType(type);
+        cloth.setFabric(fabric);
+        cloth.setManufacturer(manufacturer);
         em.persist(cloth);
     }
 

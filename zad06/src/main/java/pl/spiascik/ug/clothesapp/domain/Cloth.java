@@ -24,7 +24,6 @@ import java.util.Collection;
         @NamedQuery(name = "cloth.addWearer", query="SELECT w FROM Wearer w JOIN w.clothes c WHERE c.id = :id"),
         @NamedQuery(name = "cloth.amountByType", query="SELECT count(c) FROM Cloth c WHERE c.type.id = :id")
 })
-@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Cloth {
 
     @Id

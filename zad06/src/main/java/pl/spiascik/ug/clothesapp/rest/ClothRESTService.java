@@ -65,7 +65,6 @@ public class ClothRESTService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getClothById(@PathParam("clothId") Long id) {
         Cloth cloth = (Cloth) cm.getClothById(id);
-        System.out.println(cloth);
         return Response.status(200).entity(cloth).build();
     }
 
@@ -73,8 +72,6 @@ public class ClothRESTService {
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addCloth(Cloth cloth) {
-        System.out.println("dodaje");
-        System.out.println(cloth);
         cm.addCloth(cloth);
         return Response.status(201).entity("Added new cloth").build();
     }
@@ -103,7 +100,6 @@ public class ClothRESTService {
     @DELETE
     @Path("/query/{tId}")
     public Response deleteClothByTypeByManufacturer(@PathParam("tId") Long tId) {
-        System.out.println(tId);;
         cm.deleteClothByTypeByManufacturer(tId);
         return Response.status(200).build();
     }
