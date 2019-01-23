@@ -43,7 +43,7 @@ public class Cloth {
     private Collection<Wearer> wearers = new ArrayList<Wearer>();
 
     @JsonBackReference(value="cloth-type")
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, targetEntity = Type.class)
     private Type type;
 
     @JsonIgnore
@@ -51,7 +51,7 @@ public class Cloth {
     private Fabric fabric;
 
     @JsonBackReference(value="cloth-manufacturer")
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, targetEntity = Manufacturer.class)
     private Manufacturer manufacturer;
 
     public Cloth(String name, String productionDate, double price, boolean isWaterproof, Type type, Fabric fabric, Manufacturer manufacturer) throws ParseException {

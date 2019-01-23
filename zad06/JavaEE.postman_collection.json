@@ -1,0 +1,738 @@
+{
+	"info": {
+		"_postman_id": "d36d4c37-a46a-49d2-9831-f5038c591902",
+		"name": "JavaEE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clothes",
+			"item": [
+				{
+					"name": "Get all clothes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cloth wearers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth/wearers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth",
+								"wearers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get clothes by type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth/type/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth",
+								"type",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get number of clothes by type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth/typeAmount/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth",
+								"typeAmount",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cloth by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add cloth",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Cloth name\",\n\t\"productionDate\": \"2016-10-12\",\n    \"price\": 20,\n    \"waterproof\": true,\n    \"type\": {\n\t    \"name\": \"Hoodie\"\n\t},\n    \"fabric\": {\n    \t\"name\": \"Cotton\"\n\t},\n    \"manufacturer\": {\n    \t\"name\": \"NIKE\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add cloth wearer  /{clothId}/{wearerId}",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 1,\n\t\"name\": \"Hooo\",\n\t\"productionDate\": \"2017-10-12\",\n\t\"price\": 20.00,\n\t\"waterproof\": \"true\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth/query/1/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth",
+								"query",
+								"1",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update cloth",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 5,\n    \"name\": \"Updated cloth\",\n    \"productionDate\": \"2018-10-14\",\n    \"price\": 55,\n    \"waterproof\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete clothes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete cloth",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete clothes byType",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/cloth/query/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"cloth",
+								"query",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Types",
+			"item": [
+				{
+					"name": "Get all types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/type",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get type by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/type/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"type",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add type",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Type name\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/type",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update type",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 3,\n\t\"name\": \"Type new Name\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/type",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"type"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Wearers",
+			"item": [
+				{
+					"name": "Get all wearers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/wearer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"wearer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get wearer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/wearer/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"wearer",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add wearer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Wearer name\",\n\t\"yob\": 1988\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/wearer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"wearer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update wearer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":2,\n\t\"name\": \"Wearer new name\",\n\t\"yob\": 1988\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/wearer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"wearer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Manufacturers",
+			"item": [
+				{
+					"name": "Get all manufacturers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/manufacturer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"manufacturer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get manufacturer clothes with type",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"yob_from\":1989,\n\t\"yob_to\":2000\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/manufacturer/query/clotheswithtype/1/T-shirt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"manufacturer",
+								"query",
+								"clotheswithtype",
+								"1",
+								"T-shirt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get manufacturer by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/manufacturer/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"manufacturer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add manufacturer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Manufacturer name\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/manufacturer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"manufacturer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update manufacturer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 3,\n\t\"name\": \"Manufacturer new Name\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/clothesapp/api/manufacturer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"clothesapp",
+								"api",
+								"manufacturer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Smoke Test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/clothesapp/api/cloth/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clothesapp",
+						"api",
+						"cloth",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

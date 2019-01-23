@@ -28,15 +28,15 @@ public class ClothManager {
     ManufacturerManager mm;
 
     public void addCloth(Cloth cloth) {
-        Type type = em.find(Type.class,(long) 3);
+//        Type type = em.find(Type.class,(long) 3);
         Wearer wearer = em.find(Wearer.class,(long) 3);
-        Fabric fabric = em.find(Fabric.class,(long) 1);
-        Manufacturer manufacturer = em.find(Manufacturer.class,(long) 1);
-
+//        Fabric fabric = em.find(Fabric.class,(long) 1);
+//        Manufacturer manufacturer = em.find(Manufacturer.class,(long) 1);
+//
         cloth.getWearers().add(wearer);
-        cloth.setType(type);
-        cloth.setFabric(fabric);
-        cloth.setManufacturer(manufacturer);
+//        cloth.setType(type);
+//        cloth.setFabric(fabric);
+//        cloth.setManufacturer(manufacturer);
         em.persist(cloth);
     }
 
@@ -58,7 +58,12 @@ public class ClothManager {
     }
 
     public void updateCloth(Cloth cloth) {
-        em.merge(cloth);
+        Cloth retrieved = em.find(Cloth.class, cloth.getId());
+        retrieved.setName(cloth.getName());
+        retrieved.setPrice(cloth.getPrice());
+        retrieved.setProductionDate(cloth.getProductionDate());
+        retrieved.setWaterproof(cloth.isWaterproof());
+        em.merge(retrieved);
     }
 
     public Cloth getClothById(Long id) {
