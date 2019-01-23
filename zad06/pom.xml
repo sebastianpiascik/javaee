@@ -47,6 +47,11 @@
             <version>2.2.3</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>3.4.0.GA</version>
+        </dependency>
     </dependencies>
 	<build>
 		<finalName>clothesapp</finalName>

@@ -51,4 +51,9 @@ public class ClothServiceIT {
         delete("/cloth/5").then().assertThat().statusCode(200);
     }
 
+    @Test
+    public void getClothById(){
+        get("/cloth/2").then().assertThat().statusCode(200);
+    }
+
 }

@@ -1,5 +1,7 @@
 package pl.spiascik.ug.clothesapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,8 @@ public class Manufacturer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+//    @JsonBackReference
     @OneToMany(mappedBy = "manufacturer",cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Cloth> clothes = new ArrayList<Cloth>();
 

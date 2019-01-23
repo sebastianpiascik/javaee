@@ -94,6 +94,14 @@ public class ClothRESTService {
         return Response.status(200).build();
     }
 
+    @DELETE
+    @Path("/{tName}/{mName}")
+    public Response deleteClothByTypeByManufacturer(@PathParam("tName") String tName, @PathParam("mName") String mName) {
+        System.out.println("ABC");
+        cm.deleteClothByTypeByManufacturer(tName,mName);
+        return Response.status(200).build();
+    }
+
     @PUT
     @Path("/")
     @Consumes(MediaType.APPLICATION_JSON)

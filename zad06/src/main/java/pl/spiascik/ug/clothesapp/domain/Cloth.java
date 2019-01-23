@@ -1,5 +1,10 @@
 package pl.spiascik.ug.clothesapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,11 +15,12 @@ import java.util.Collection;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "cloth.all", query = "Select c.id, c.name, c.price, c.productionDate, c.isWaterproof, c.type.name, c.fabric.name from Cloth c"),
-        @NamedQuery(name = "cloth.byId", query = "Select c.id, c.name, c.price, c.productionDate, c.isWaterproof, c.type.name, c.fabric.name from Cloth c where c.id = :id"),
+        @NamedQuery(name = "cloth.all", query = "Select c from Cloth c JOIN fetch c.type ct JOIN fetch c.manufacturer"),
+        @NamedQuery(name = "cloth.byId", query = "Select c from Cloth c JOIN fetch c.type ct JOIN fetch c.manufacturer cm where c.id = :id"),
         @NamedQuery(name = "cloth.deleteAll", query="Delete from Cloth"),
         @NamedQuery(name = "cloth.deleteCloth", query="Delete from Cloth c WHERE c.id = :id"),
-        @NamedQuery(name = "cloth.byType", query="SELECT c.id, c.name, c.price, c.productionDate, c.isWaterproof, c.type.name, c.fabric.name FROM Cloth c WHERE c.type.id = :id"),
+        @NamedQuery(name = "cloth.deleteClothesByTypeByManufacturer", query="Delete from Cloth c WHERE c.type.name = :tName AND c.manufacturer.name = :mName"),
+        @NamedQuery(name = "cloth.byType", query="SELECT c.id, c.name FROM Cloth c WHERE c.type.id = :id"),
         @NamedQuery(name = "cloth.allWearers", query="SELECT w FROM Wearer w JOIN w.clothes c WHERE c.id = :id"),
         @NamedQuery(name = "cloth.addWearer", query="SELECT w FROM Wearer w JOIN w.clothes c WHERE c.id = :id")
 })
@@ -27,6 +33,7 @@ public class Cloth {
     private Date productionDate;
     private double price;
     private boolean isWaterproof;
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
             name = "cloth_wearer",
@@ -34,13 +41,17 @@ public class Cloth {
             inverseJoinColumns = { @JoinColumn(name = "wearer_id") }
     )
     private Collection<Wearer> wearers = new ArrayList<Wearer>();
-    @ManyToOne(cascade = {CascadeType.ALL})
+
+//    @JsonManagedReference
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Type type;
 
-    @OneToOne(cascade = {CascadeType.ALL})
+    @JsonIgnore
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, orphanRemoval = true)
     private Fabric fabric;
 
-    @ManyToOne
+//    @JsonManagedReference
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private Manufacturer manufacturer;
 
     public Cloth(String name, String productionDate, double price, boolean isWaterproof, Type type, Fabric fabric, Manufacturer manufacturer) throws ParseException {

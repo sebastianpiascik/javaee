@@ -50,8 +50,10 @@ public class ClothManager {
 
     public void deleteCloth(Long id) {
         em.createNamedQuery("cloth.deleteCloth").setParameter("id", id).executeUpdate();
-//        Cloth cloth = em.find(Cloth.class, id);
-//        em.remove(cloth);
+    }
+
+    public void deleteClothByTypeByManufacturer(String tName, String mName) {
+        em.createNamedQuery("cloth.deleteClothesByTypeByManufacturer").setParameter("tName", tName).setParameter("mName", mName).executeUpdate();
     }
 
     public void updateCloth(Cloth cloth) {
@@ -59,14 +61,7 @@ public class ClothManager {
     }
 
     public Cloth getClothById(Long id) {
-//        Query qry= em.createNamedQuery("cloth.byId", Cloth.class).setParameter("id", id);
-//        System.out.println(qry);
-//        Cloth cloth = (Cloth)qry.getSingleResult();
-//        System.out.println(cloth);
-//        return cloth;
-//        return (Cloth)em.createNamedQuery("cloth.byId").setParameter("id", id).get;
-        Cloth retrieved = em.find(Cloth.class, id);
-        return retrieved;
+        return (Cloth) em.createNamedQuery("cloth.byId").setParameter("id", id).getSingleResult();
     }
 
     public List<Cloth> getClothWearers(Long id) {
